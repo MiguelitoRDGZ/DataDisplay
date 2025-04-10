@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Analysis Report</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="report-container">
+        <!-- Header Section -->
+        <header class="report-header">
+            <div class="header-content">
+                <h1><i class="fas fa-chart-line"></i> Complaint Trends Analysis</h1>
+                <div class="header-meta">
+                    <span><i class="far fa-user"></i> <strong>Prepared for:</strong> Nino Green</span>
+                    <span><i class="fas fa-user-edit"></i> <strong>Prepared by:</strong> Eddy Sanchez & Mike Rodriguez</span>
+                    <span><i class="far fa-calendar-alt"></i> <strong>Date:</strong> April 10, 2025</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Introduction -->
+        <section class="section intro-section">
+            <h2><i class="fas fa-info-circle"></i> Introduction</h2>
+            <p>This report analyzes complaint trends from November 2024 to March 2025, highlighting key patterns, departmental impacts, and actionable recommendations.</p>
+        </section>
+
+        <!-- Monthly Trends Charts -->
+        <section class="section chart-section">
+            <h2><i class="fas fa-chart-bar"></i> Visual Trends Overview</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <canvas id="trendsChart"></canvas>
+                    <div class="chart-legend" id="trendsLegend"></div>
+                </div>
+                <div class="chart-card">
+                    <canvas id="departmentChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Monthly Breakdown -->
+        <section class="section table-section">
+            <h2><i class="fas fa-table"></i> Monthly Complaint Breakdown</h2>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Complaint Reason</th>
+                            <th>Department</th>
+                            <th>Nov</th>
+                            <th>Dec</th>
+                            <th>Jan</th>
+                            <th>Feb</th>
+                            <th>Mar</th>
+                            <th>Trend</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Claims vs Complaints Analysis -->
+        <section class="section comparison-section">
+            <h2><i class="fas fa-percentage"></i> Claims vs Complaints Analysis</h2>
+            <div class="table-responsive">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Total Claims</th>
+                            <th>Total Complaints</th>
+                            <th>Complaint %</th>
+                            <th>Trend</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Key Findings Table -->
+        <section class="section findings-section">
+            <h2><i class="fas fa-search-plus"></i> Key Findings</h2>
+            <div class="table-responsive">
+                <table class="findings-table">
+                    <thead>
+                        <tr>
+                            <th>Finding</th>
+                            <th>Impact</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>March unspecified complaints surge (22 cases)</td>
+                            <td>High - indicates customer leaving reviews without a valid reason</td>
+                            <td><span class="priority-high">Urgent</span></td>
+                        </tr>
+                        <tr>
+                            <td>Technician delays increasing monthly</td>
+                            <td>Medium - affects customer satisfaction</td>
+                            <td><span class="priority-medium">High</span></td>
+                        </tr>
+                        <tr>
+                            <td>Resolutions handles 72 total complaints</td>
+                            <td>High - largest volume department</td>
+                            <td><span class="priority-high">Urgent</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Recommendations Table -->
+        <section class="section recommendations-section">
+            <h2><i class="fas fa-lightbulb"></i> Action Plan</h2>
+            <div class="table-responsive">
+                <table class="recommendations-table">
+                    <thead>
+                        <tr>
+                            <th>Action Item</th>
+                            <th>Responsible</th>
+                            <th>Timeline</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Review unspecified complaint categorization</td>
+                            <td>N/A</td>
+                            <td>2 weeks</td>
+                        </tr>
+                        <tr>
+                            <td>Optimize technician dispatch process</td>
+                            <td>Operations</td>
+                            <td>1 month</td>
+                        </tr>
+                        <tr>
+                            <td>Resolutions department process audit</td>
+                            <td>Resolutions Manager</td>
+                            <td>3 weeks</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="section conclusion-section">
+            <h2><i class="fas fa-check-circle"></i> Conclusion</h2>
+            <div class="conclusion-card">
+                <p>The data shows three critical areas needing attention: categorization issues (March spike), technician delays (consistent increase), and Resolutions department workload. Implementing the recommended actions should reduce complaints by 30-40% in Q2.</p>
+                <div class="signature">
+                    <p>Eddy Sanchez & Mike Rodriguez- Operations Specialists</p>
+                    <p>April 10, 2025</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
