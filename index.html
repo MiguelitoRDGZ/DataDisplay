@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KPI Dashboard - Agent Selector</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Workforce</h2>
+    <!-- Future Nav Items -->
+  </div>
+
+  <div class="main">
+    <div class="dashboard-header">KPI Dashboard</div>
+    <div class="card">
+      <label for="departmentSelect">Select a Department</label>
+      <select id="departmentSelect">
+        <option value="">-- Choose Department --</option>
+        <option value="Brand Management">Brand Management</option>
+        <option value="Customer Service">Customer Service</option>
+        <option value="Marketing">Marketing</option>
+      </select>
+
+      <label for="agentSelect">Select an Agent</label>
+      <select id="agentSelect" disabled>
+        <option value="">-- Choose Agent --</option>
+      </select>
+      <label for="weekSelect">Select a Week</label>
+<select id="weekSelect" disabled>
+  <option value="">-- All Weeks --</option>
+</select>
+
+
+      <div class="output" id="selectedAgentOutput">No agent selected</div>
+
+      <!-- KPI Table -->
+      <div id="kpiContainer" class="kpi-table" style="display: none;">
+        <h3>KPI Weekly Breakdown</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Customers Assigned</th>
+              <th>Accomplished</th>
+              <th>Rate</th>
+              <th>Scheduled</th>
+              <th>Worked</th>
+              <th>Late</th>
+              <th>Score</th>
+              <th>Slacks</th>
+              <th>Contacts Handled</th>
+              <th>Incoming</th>
+              <th>Outbound</th>
+              <th>Non-Prod Time</th>
+              <th>AHT</th>
+              <th>Missed</th>
+              <th>Total Avail Time</th>
+              <th>Avg Avail</th>
+              <th>Hrs Worked</th>
+              <th>Avail vs Worked</th>
+              <th>Manager Feedback</th>
+            </tr>
+          </thead>
+          <tbody id="kpiTableBody">
+            <!-- Rows will be dynamically added -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
