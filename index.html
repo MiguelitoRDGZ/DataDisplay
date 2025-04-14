@@ -3,165 +3,508 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complaint Analysis Report</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Team Member KPI Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .week-section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #e9e9e9;
+            padding: 10px;
+            margin: -15px -15px 15px -15px;
+            border-radius: 5px 5px 0 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        input {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .section-title {
+            font-weight: bold;
+            margin: 15px 0 10px 0;
+            color: #333;
+        }
+        .clear-btn {
+            background-color: #f44336;
+        }
+        .clear-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
 </head>
 <body>
-    <div class="report-container">
-        <!-- Header Section -->
-        <header class="report-header">
-            <div class="header-content">
-                <h1><i class="fas fa-chart-line"></i> Complaint Trends Analysis</h1>
+    <div class="container">
+        <h1>Team Member KPI Tracker</h1>
+        
+        <div class="header-section">
+            <div>
+                <label for="teamMember">Select Team Member:</label>
+                <select id="teamMember">
+                    <option value="member1">Member 1</option>
+                    <option value="member2">Member 2</option>
+                    <option value="member3">Member 3</option>
+                </select>
             </div>
-        </header>
-
-        <!-- Introduction -->
-        <section class="section intro-section">
-            <h2><i class="fas fa-info-circle"></i> Introduction</h2>
-            <p>This report analyzes complaint trends from November 2024 to March 2025, highlighting key patterns, departmental impacts, and actionable recommendations.</p>
-        </section>
-
-        <!-- Monthly Trends Charts -->
-        <section class="section chart-section">
-            <h2><i class="fas fa-chart-bar"></i> Visual Trends Overview</h2>
-            <div class="chart-grid">
-                <div class="chart-card">
-                    <canvas id="trendsChart"></canvas>
-                    <div class="chart-legend" id="trendsLegend"></div>
-                </div>
-                <div class="chart-card">
-                    <canvas id="departmentChart"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <!-- Detailed Monthly Breakdown -->
-        <section class="section table-section">
-            <h2><i class="fas fa-table"></i> Monthly Complaint Breakdown</h2>
-            <div class="table-responsive">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Complaint Reason</th>
-                            <th>Department</th>
-                            <th>Nov</th>
-                            <th>Dec</th>
-                            <th>Jan</th>
-                            <th>Feb</th>
-                            <th>Mar</th>
-                            <th>Trend</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Rows will be populated by JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Claims vs Complaints Analysis -->
-        <section class="section comparison-section">
-            <h2><i class="fas fa-percentage"></i> Claims vs Complaints Analysis</h2>
-            <div class="table-responsive">
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Month</th>
-                            <th>Total Claims</th>
-                            <th>Total Complaints</th>
-                            <th>Complaint %</th>
-                            <th>Trend</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Will be populated by JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Key Findings Table -->
-        <section class="section findings-section">
-            <h2><i class="fas fa-search-plus"></i> Key Findings</h2>
-            <div class="table-responsive">
-                <table class="findings-table">
-                    <thead>
-                        <tr>
-                            <th>Finding</th>
-                            <th>Impact</th>
-                            <th>Note</th>
-                            <th>Priority</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>March unspecified complaints surge (22 cases)</td>
-                            <td>Medium</td> 
-                            <td>Indicates customer leaving reviews without a valid reason</td>
-                            <td><span class="priority-medium">High</span></td>
-                        </tr>
-                        <tr>
-                            <td>Technician delays increasing monthly</td>
-                            <td>High</td>
-                            <td>Affects customer satisfaction</td>
-                            <td><span class="priority-high">Urgent</span></td>
-                        </tr>
-                        <tr>
-                            <td>Resolutions handles 72 total complaints</td>
-                            <td>High</td>
-                            <td>Largest volume department</td>
-                            <td><span class="priority-high">Urgent</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Recommendations Table -->
-        <section class="section recommendations-section">
-            <h2><i class="fas fa-lightbulb"></i> Action Plan</h2>
-            <div class="table-responsive">
-                <table class="recommendations-table">
-                    <thead>
-                        <tr>
-                            <th>Action Item</th>
-                            <th>Responsible</th>
-                            <th>Reason Why</th>
-                            <th>Recommended Timeline</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Optimize technician operation process</td>
-                            <td>Operations</td>
-                            <td>We have been receiving bad reviews due to the issues we are having with unresponsive techs, authorizations not contacting the technician to follow up after they have been dispatched.</td>
-                            <td>1 month</td>
-                        </tr>
-                        <tr>
-                            <td>Resolutions department process audit</td>
-                            <td>Resolutions Manager</td>
-                            <td>Resolution Agents are treating customer rude, not good empathy being heard, just saying this can be done.</td>
-                            <td>3 weeks</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Conclusion -->
-        <section class="section conclusion-section">
-            <h2><i class="fas fa-check-circle"></i> Conclusion</h2>
-            <div class="conclusion-card">
-                <p>The data shows two critical areas needing attention: technician delays (consistent increase), and Resolutions department workflow. Implementing the recommended actions should reduce complaints by 30-40% in Q2.</p>
-                <div class="signature">
-                    <p>April 10, 2025</p>
+            <button class="clear-btn" onclick="clearAllData()">Clear Data</button>
+        </div>
+        
+        <!-- Week 1 -->
+        <div class="week-section" id="week1">
+            <div class="week-header">
+                <h3>Week 1</h3>
+                <div>
+                    <span>Start: <input type="date" id="week1-start" value="2025-04-01"></span>
+                    <span>End: <input type="date" id="week1-end" value="2025-04-06"></span>
+                    <span>Total Days: <input type="number" id="week1-days" value="5" style="width: 50px;"></span>
                 </div>
             </div>
-        </section>
+            
+            <div class="section-title">Customer Complaint Division</div>
+            <table>
+                <tr>
+                    <th>Office:</th>
+                    <th>Customer Success Division</th>
+                    <th>Customers Assigned</th>
+                    <th>Reviews Received/Removed</th>
+                    <th>Rate</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="week1-office"></td>
+                    <td><input type="text" id="week1-customer-success"></td>
+                    <td><input type="text" id="week1-customers-assigned" value="N/A"></td>
+                    <td><input type="text" id="week1-reviews-received" value="N/A"></td>
+                    <td><input type="text" id="week1-rate"></td>
+                </tr>
+            </table>
+            
+            <div class="section-title">POSITIVE REVIEWS</div>
+            <table>
+                <tr>
+                    <th>Customers Assigned</th>
+                    <th>Reviews Received/Removed</th>
+                    <th>Rate</th>
+                    <th>Slacks</th>
+                    <th>Contacts Handled</th>
+                    <th>Handled incoming</th>
+                    <th>Handled outbound</th>
+                    <th>Avg. Hold Time</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="week1-pos-customers-assigned"></td>
+                    <td><input type="text" id="week1-pos-reviews-received"></td>
+                    <td><input type="text" id="week1-pos-rate"></td>
+                    <td><input type="text" id="week1-slacks"></td>
+                    <td><input type="text" id="week1-contacts-handled"></td>
+                    <td><input type="text" id="week1-handled-incoming"></td>
+                    <td><input type="text" id="week1-handled-outbound"></td>
+                    <td><input type="text" id="week1-avg-hold-time"></td>
+                </tr>
+            </table>
+            
+            <table>
+                <tr>
+                    <th>Avg. Handle Time</th>
+                    <th>Contacts Missed</th>
+                    <th>Total Available Time</th>
+                    <th>Avg Available Time</th>
+                    <th>Hours Worked</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="week1-avg-handle-time"></td>
+                    <td><input type="text" id="week1-contacts-missed"></td>
+                    <td><input type="text" id="week1-total-available-time"></td>
+                    <td><input type="text" id="week1-avg-available-time"></td>
+                    <td><input type="text" id="week1-hours-worked"></td>
+                </tr>
+            </table>
+            
+            <div class="section-title">ATTENDANCE</div>
+            <div>Available time vs. Hours Worked</div>
+            <table>
+                <tr>
+                    <th>Schedule</th>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>Scheduled</th>
+                                <th>Worked</th>
+                                <th>Late</th>
+                                <th>Absent</th>
+                                <th>Score</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" id="week1-scheduled"></td>
+                                <td><input type="text" id="week1-worked"></td>
+                                <td><input type="text" id="week1-late" value="0"></td>
+                                <td><input type="text" id="week1-absent"></td>
+                                <td><input type="text" id="week1-score"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- Week 2 -->
+        <div class="week-section" id="week2">
+            <div class="week-header">
+                <h3>Week 2</h3>
+                <div>
+                    <span>Start: <input type="date" id="week2-start" value="2025-04-07"></span>
+                    <span>End: <input type="date" id="week2-end" value="2025-04-13"></span>
+                    <span>Total Days: <input type="number" id="week2-days" value="6" style="width: 50px;"></span>
+                </div>
+            </div>
+            
+            <div class="section-title">SLACK DATA</div>
+            <table>
+                <tr>
+                    <th>Department (Overall)</th>
+                    <th>Team Member (Overall)</th>
+                    <th>Customers Assigned</th>
+                    <th>Reviews Received</th>
+                    <th>Rate</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="week2-department"></td>
+                    <td><input type="text" id="week2-team-member"></td>
+                    <td><input type="text" id="week2-customers-assigned" value="N/A"></td>
+                    <td><input type="text" id="week2-reviews-received" value="N/A"></td>
+                    <td><input type="text" id="week2-rate"></td>
+                </tr>
+            </table>
+            
+            <table>
+                <tr>
+                    <th>Slacks Handled</th>
+                    <th>Avg. Handle Time</th>
+                    <th>Slacks Handled</th>
+                    <th>Avg. Handle Time</th>
+                    <th>Rank</th>
+                    <th>Slacks</th>
+                    <th>Contacts Handled</th>
+                    <th>Handled incoming</th>
+                    <th>Handled outbound</th>
+                    <th>Avg. Hold Time</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="week2-slacks-handled1"></td>
+                    <td><input type="text" id="week2-avg-handle-time1"></td>
+                    <td><input type="text" id="week2-slacks-handled2"></td>
+                    <td><input type="text" id="week2-avg-handle-time2"></td>
+                    <td><input type="text" id="week2-rank"></td>
+                    <td><input type="text" id="week2-slacks"></td>
+                    <td><input type="text" id="week2-contacts-handled"></td>
+                    <td><input type="text" id="week2-handled-incoming"></td>
+                    <td><input type="text" id="week2-handled-outbound"></td>
+                    <td><input type="text" id="week2-avg-hold-time"></td>
+                </tr>
+            </table>
+            
+            <table>
+                <tr>
+                    <th>Avg. Handle Time</th>
+                    <th>Contacts Missed</th>
+                    <th>Total Available Time</th>
+                    <th>Avg Available Time</th>
+                    <th>Hours Worked</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="week2-avg-handle-time3"></td>
+                    <td><input type="text" id="week2-contacts-missed"></td>
+                    <td><input type="text" id="week2-total-available-time"></td>
+                    <td><input type="text" id="week2-avg-available-time"></td>
+                    <td><input type="text" id="week2-hours-worked"></td>
+                </tr>
+            </table>
+            
+            <div class="section-title">AWS DATA</div>
+            <table>
+                <tr>
+                    <th>Contacts Handled</th>
+                    <th>Handled Incoming</th>
+                    <th>Handled outbound</th>
+                    <th>Avg. Hold Time</th>
+                    <th>Avg. Handle Time</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="week2-aws-contacts-handled"></td>
+                    <td><input type="text" id="week2-aws-handled-incoming"></td>
+                    <td><input type="text" id="week2-aws-handled-outbound"></td>
+                    <td><input type="text" id="week2-aws-avg-hold-time"></td>
+                    <td><input type="text" id="week2-aws-avg-handle-time"></td>
+                </tr>
+            </table>
+            
+            <table>
+                <tr>
+                    <th>Contacts Missed</th>
+                    <th>Total Available Time</th>
+                    <th>Avg Available Time</th>
+                    <th>Hours Worked</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="week2-aws-contacts-missed"></td>
+                    <td><input type="text" id="week2-aws-total-available-time"></td>
+                    <td><input type="text" id="week2-aws-avg-available-time"></td>
+                    <td><input type="text" id="week2-aws-hours-worked"></td>
+                </tr>
+            </table>
+            
+            <div>Available time vs. Hours Worked</div>
+        </div>
+        
+        <!-- Week 3 -->
+        <div class="week-section" id="week3">
+            <div class="week-header">
+                <h3>Week 3</h3>
+                <div>
+                    <span>Start: <input type="date" id="week3-start" value="2025-04-20"></span>
+                    <span>End: <input type="date" id="week3-end" value="2025-04-27"></span>
+                    <span>Total Days: <input type="number" id="week3-days" value="7" style="width: 50px;"></span>
+                </div>
+            </div>
+            
+            <table>
+                <tr>
+                    <th>Customers Assigned</th>
+                    <th>Reviews Received</th>
+                    <th>Rate</th>
+                    <th>Slacks</th>
+                    <th>Contacts Handled</th>
+                    <th>Handled incoming</th>
+                    <th>Handled outbound</th>
+                    <th>Avg. Hold Time</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="week3-customers-assigned" value="N/A"></td>
+                    <td><input type="text" id="week3-reviews-received" value="N/A"></td>
+                    <td><input type="text" id="week3-rate"></td>
+                    <td><input type="text" id="week3-slacks"></td>
+                    <td><input type="text" id="week3-contacts-handled"></td>
+                    <td><input type="text" id="week3-handled-incoming"></td>
+                    <td><input type="text" id="week3-handled-outbound"></td>
+                    <td><input type="text" id="week3-avg-hold-time"></td>
+                </tr>
+            </table>
+            
+            <table>
+                <tr>
+                    <th>Avg. Handle Time</th>
+                    <th>Contacts Missed</th>
+                    <th>Total Available Time</th>
+                    <th>Avg Available Time</th>
+                    <th>Hours Worked</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="week3-avg-handle-time"></td>
+                    <td><input type="text" id="week3-contacts-missed"></td>
+                    <td><input type="text" id="week3-total-available-time"></td>
+                    <td><input type="text" id="week3-avg-available-time"></td>
+                    <td><input type="text" id="week3-hours-worked"></td>
+                </tr>
+            </table>
+            
+            <div>Available time vs. Hours Worked</div>
+            
+            <div class="section-title">MANAGER FEEDBACK</div>
+            <table>
+                <tr>
+                    <th>Week 1</th>
+                    <td><input type="text" id="week1-feedback" value="N/A"></td>
+                </tr>
+                <tr>
+                    <th>Week 2</th>
+                    <td><input type="text" id="week2-feedback" value="N/A"></td>
+                </tr>
+                <tr>
+                    <th>Week 3</th>
+                    <td><input type="text" id="week3-feedback" value="N/A"></td>
+                </tr>
+                <tr>
+                    <th>Week 4</th>
+                    <td><input type="text" id="week4-feedback" value="N/A"></td>
+                </tr>
+            </table>
+            
+            <div class="section-title">ERRORS</div>
+            <input type="text" id="errors" value="N/A" style="width: 100%;">
+        </div>
+        
+        <!-- Week 4 -->
+        <div class="week-section" id="week4">
+            <div class="week-header">
+                <h3>Week 4</h3>
+                <div>
+                    <span>Start: <input type="date" id="week4-start" value="2025-04-28"></span>
+                    <span>End: <input type="date" id="week4-end" value="2025-04-30"></span>
+                    <span>Total Days: <input type="number" id="week4-days" value="2" style="width: 50px;"></span>
+                </div>
+            </div>
+            
+            <table>
+                <tr>
+                    <th>Customers Assigned</th>
+                    <th>Reviews Received</th>
+                    <th>Rate</th>
+                    <th>Slacks</th>
+                    <th>Contacts Handled</th>
+                    <th>Handled incoming</th>
+                    <th>Handled outbound</th>
+                    <th>Avg. Hold Time</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="week4-customers-assigned" value="N/A"></td>
+                    <td><input type="text" id="week4-reviews-received" value="N/A"></td>
+                    <td><input type="text" id="week4-rate"></td>
+                    <td><input type="text" id="week4-slacks"></td>
+                    <td><input type="text" id="week4-contacts-handled"></td>
+                    <td><input type="text" id="week4-handled-incoming"></td>
+                    <td><input type="text" id="week4-handled-outbound"></td>
+                    <td><input type="text" id="week4-avg-hold-time"></td>
+                </tr>
+            </table>
+            
+            <table>
+                <tr>
+                    <th>Avg. Handle Time</th>
+                    <th>Contacts Missed</th>
+                    <th>Total Available Time</th>
+                    <th>Avg Available Time</th>
+                    <th>Hours Worked</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="week4-avg-handle-time"></td>
+                    <td><input type="text" id="week4-contacts-missed"></td>
+                    <td><input type="text" id="week4-total-available-time"></td>
+                    <td><input type="text" id="week4-avg-available-time"></td>
+                    <td><input type="text" id="week4-hours-worked"></td>
+                </tr>
+            </table>
+            
+            <div>Available time vs. Hours Worked</div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <button onclick="saveData()">Save Data</button>
+            <button onclick="loadData()">Load Data</button>
+        </div>
     </div>
 
-    <script src="js/script.js"></script>
+    <script>
+        function clearAllData() {
+            if(confirm('Are you sure you want to clear all data?')) {
+                const inputs = document.querySelectorAll('input');
+                inputs.forEach(input => {
+                    if(input.type !== 'date' && input.id !== 'week1-days' && input.id !== 'week2-days' 
+                       && input.id !== 'week3-days' && input.id !== 'week4-days') {
+                        input.value = '';
+                    }
+                });
+                
+                // Reset N/A values
+                document.getElementById('week1-customers-assigned').value = 'N/A';
+                document.getElementById('week1-reviews-received').value = 'N/A';
+                document.getElementById('week2-customers-assigned').value = 'N/A';
+                document.getElementById('week2-reviews-received').value = 'N/A';
+                document.getElementById('week3-customers-assigned').value = 'N/A';
+                document.getElementById('week3-reviews-received').value = 'N/A';
+                document.getElementById('week4-customers-assigned').value = 'N/A';
+                document.getElementById('week4-reviews-received').value = 'N/A';
+                document.getElementById('week1-feedback').value = 'N/A';
+                document.getElementById('week2-feedback').value = 'N/A';
+                document.getElementById('week3-feedback').value = 'N/A';
+                document.getElementById('week4-feedback').value = 'N/A';
+                document.getElementById('errors').value = 'N/A';
+                document.getElementById('week1-late').value = '0';
+            }
+        }
+        
+        function saveData() {
+            const data = {};
+            const inputs = document.querySelectorAll('input, select');
+            
+            inputs.forEach(input => {
+                data[input.id] = input.value;
+            });
+            
+            localStorage.setItem('kpiData', JSON.stringify(data));
+            alert('Data saved successfully!');
+        }
+        
+        function loadData() {
+            const savedData = localStorage.getItem('kpiData');
+            if(savedData) {
+                const data = JSON.parse(savedData);
+                
+                for(const id in data) {
+                    const element = document.getElementById(id);
+                    if(element) {
+                        element.value = data[id];
+                    }
+                }
+                alert('Data loaded successfully!');
+            } else {
+                alert('No saved data found!');
+            }
+        }
+    </script>
 </body>
 </html>
