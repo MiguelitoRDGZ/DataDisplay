@@ -1,33 +1,27 @@
 function switchTab(tabName) {
-    const monthlyTab = document.getElementById("monthly");
-    const weeklyTab = document.getElementById("weekly");
+    const tabs = ["monthly", "weekly"];
+    tabs.forEach(tab => {
+      document.getElementById(tab).classList.toggle("hidden", tab !== tabName);
+    });
   
-    // Hide/show tab content
-    if (tabName === "monthly") {
-      monthlyTab.classList.remove("hidden");
-      weeklyTab.classList.add("hidden");
-    } else {
-      weeklyTab.classList.remove("hidden");
-      monthlyTab.classList.add("hidden");
-    }
+    const buttons = document.querySelectorAll(".nav-button");
+    buttons.forEach(button => button.classList.remove("active"));
   
-    // Update active tab button style
-    const buttons = document.querySelectorAll(".tab-button");
-    buttons.forEach(btn => btn.classList.remove("active"));
-    document.querySelector(`.tab-button[onclick=\"switchTab('${tabName}')\"]`).classList.add("active");
+    const activeButton = [...buttons].find(btn => btn.textContent.includes(tabName === "monthly" ? "Monthly" : "Weekly"));
+    if (activeButton) activeButton.classList.add("active");
   }
   
   function clearData() {
-    const fields = [
+    const fieldIds = [
       "ccdStart", "ccdEnd", "customersAssigned", "reviews", "reviewRate",
       "slacks", "contacts", "incoming", "outbound", "holdTime",
       "scheduled", "worked", "late", "absent", "attendanceScore",
       "feedback", "errors"
     ];
   
-    fields.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.value = "";
+    fieldIds.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) element.value = "";
     });
   
     document.getElementById("teamMember").selectedIndex = 0;
