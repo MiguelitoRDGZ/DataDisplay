@@ -1,6 +1,5 @@
 function openAssignPopup(button) {
   document.getElementById('assignPopup').classList.add('active');
-  // Store reference to the button that opened the popup
   document.getElementById('assignPopup').currentButton = button;
 }
 
@@ -16,23 +15,39 @@ function confirmAssign() {
     const popup = document.getElementById('assignPopup');
     const button = popup.currentButton;
     
-    // Create a new span to show the assigned agent
-    const agentSpan = document.createElement('span');
-    agentSpan.className = 'assigned-agent';
-    agentSpan.textContent = selectedAgent;
+    const agentDiv = document.createElement('div');
+    agentDiv.className = 'agent-info';
+    agentDiv.innerHTML = `
+      <i class="fas fa-user-check" style="color: var(--lh-blue);"></i>
+      <span>${selectedAgent}</span>
+    `;
     
-    // Replace the button with the span
-    button.parentNode.replaceChild(agentSpan, button);
-    
+    button.parentNode.replaceChild(agentDiv, button);
     closeAssignPopup();
   } else {
     alert('Please select an agent first');
   }
 }
 
-// Close popup when clicking outside
 document.getElementById('assignPopup').addEventListener('click', function(e) {
   if (e.target === this) {
     closeAssignPopup();
   }
+});
+
+// Add click handlers for action buttons
+document.querySelectorAll('.action-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const action = this.title;
+    const customerName = this.closest('tr').querySelector('td:first-child strong').textContent;
+    
+    if (action === 'Delete') {
+      if (confirm(`Are you sure you want to delete the review from ${customerName}?`)) {
+        this.closest('tr').remove();
+      }
+    } else {
+      alert(`${action} action for ${customerName}`);
+      // In a real app, this would open a detail view or edit form
+    }
+  });
 });

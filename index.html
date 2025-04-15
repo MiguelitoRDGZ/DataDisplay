@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brand Management Agenda</title>
+  <title>Brand Management | Liberty Home Guard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="navbar">
     <div class="container">
-      <h1><i class="fas fa-calendar-check"></i> Brand Management Agenda</h1>
+      <h1><i class="fas fa-shield-alt"></i> Liberty Home Guard Reviews</h1>
     </div>
   </div>
 
   <main class="container">
     <section class="agenda-header">
-      <h2>Assigned Customer Reviews</h2>
-      <p>Manage and track agent-customer recovery interactions for negative reviews.</p>
+      <h2>Customer Review Management</h2>
+      <p>Monitor and resolve customer feedback to maintain our reputation for excellent service.</p>
       
       <div class="search-filter">
         <input type="text" placeholder="Search reviews..." class="search-input">
@@ -26,6 +26,7 @@
           <option value="Google">Google Reviews</option>
           <option value="Trustpilot">Trustpilot</option>
           <option value="Yelp">Yelp</option>
+          <option value="Facebook">Facebook</option>
         </select>
         <select class="status-filter">
           <option value="">All Statuses</option>
@@ -40,102 +41,144 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Customer Name</th>
-            <th>Assigned Agent</th>
-            <th>Review Platform</th>
+            <th>Customer</th>
+            <th>Agent</th>
+            <th>Platform</th>
             <th>Review Summary</th>
-            <th>Recommended Approach</th>
+            <th>Response Plan</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td data-label="Customer Name">Jane Doe</td>
-            <td data-label="Assigned Agent">
+            <td data-label="Customer">
+              <div class="customer-info">
+                <strong>Jane Doe</strong>
+                <small>jane.doe@example.com</small>
+              </div>
+            </td>
+            <td data-label="Agent">
               <button class="btn assign-btn" onclick="openAssignPopup(this)">
                 <i class="fas fa-user-plus"></i> Assign
               </button>
             </td>
-            <td data-label="Review Platform">
-              <span class="platform-badge">
-                <i class="fab fa-google"></i> Google Reviews
+            <td data-label="Platform">
+              <span class="platform-badge google-badge">
+                <i class="fab fa-google"></i> Google
               </span>
             </td>
-            <td data-label="Review Summary">"Long wait time and unresponsive support."</td>
-            <td data-label="Recommended Approach">
+            <td data-label="Review Summary">
+              <div class="review-summary">
+                <div class="rating">
+                  <i class="fas fa-star" style="color: var(--lh-orange);"></i>
+                  <i class="fas fa-star" style="color: var(--lh-orange);"></i>
+                  <i class="far fa-star" style="color: var(--lh-orange);"></i>
+                  <i class="far fa-star" style="color: var(--lh-orange);"></i>
+                  <i class="far fa-star" style="color: var(--lh-orange);"></i>
+                </div>
+                "Long wait time and unresponsive support."
+              </div>
+            </td>
+            <td data-label="Response Plan">
               <textarea class="approach-text">Acknowledge the inconvenience, offer a direct line to resolve the issue, and assure improved support.</textarea>
             </td>
             <td data-label="Status">
-              <select class="status-select">
-                <option>Pending</option>
-                <option>In Progress</option>
-                <option>Resolved</option>
-              </select>
+              <span class="status-badge status-pending">Pending</span>
             </td>
             <td data-label="Actions">
               <div class="action-buttons">
                 <button class="action-btn" title="View Details"><i class="fas fa-eye"></i></button>
                 <button class="action-btn" title="Edit"><i class="fas fa-edit"></i></button>
-                <button class="action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                <button class="action-btn delete" title="Delete"><i class="fas fa-trash"></i></button>
               </div>
             </td>
           </tr>
           <tr>
-            <td data-label="Customer Name">John Smith</td>
-            <td data-label="Assigned Agent">
-              <span class="assigned-agent">Mike Rodriguez</span>
+            <td data-label="Customer">
+              <div class="customer-info">
+                <strong>John Smith</strong>
+                <small>john.smith@example.com</small>
+              </div>
             </td>
-            <td data-label="Review Platform">
-              <span class="platform-badge">
+            <td data-label="Agent">
+              <div class="agent-info">
+                <i class="fas fa-user-check" style="color: var(--lh-blue);"></i>
+                <span>Mike Rodriguez</span>
+              </div>
+            </td>
+            <td data-label="Platform">
+              <span class="platform-badge trustpilot-badge">
                 <i class="fas fa-star"></i> Trustpilot
               </span>
             </td>
-            <td data-label="Review Summary">"Felt ignored after making a claim."</td>
-            <td data-label="Recommended Approach">
+            <td data-label="Review Summary">
+              <div class="review-summary">
+                <div class="rating">
+                  <i class="fas fa-star" style="color: var(--lh-orange);"></i>
+                  <i class="fas fa-star" style="color: var(--lh-orange);"></i>
+                  <i class="fas fa-star" style="color: var(--lh-orange);"></i>
+                  <i class="far fa-star" style="color: var(--lh-orange);"></i>
+                  <i class="far fa-star" style="color: var(--lh-orange);"></i>
+                </div>
+                "Felt ignored after making a claim."
+              </div>
+            </td>
+            <td data-label="Response Plan">
               <textarea class="approach-text">Empathize with the frustration, review the claim personally, and provide a swift follow-up.</textarea>
             </td>
             <td data-label="Status">
-              <select class="status-select">
-                <option>Pending</option>
-                <option selected>In Progress</option>
-                <option>Resolved</option>
-              </select>
+              <span class="status-badge status-in-progress">In Progress</span>
             </td>
             <td data-label="Actions">
               <div class="action-buttons">
                 <button class="action-btn" title="View Details"><i class="fas fa-eye"></i></button>
                 <button class="action-btn" title="Edit"><i class="fas fa-edit"></i></button>
-                <button class="action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                <button class="action-btn delete" title="Delete"><i class="fas fa-trash"></i></button>
               </div>
             </td>
           </tr>
           <tr>
-            <td data-label="Customer Name">Ana Martinez</td>
-            <td data-label="Assigned Agent">
-              <span class="assigned-agent">Amber Reyes</span>
+            <td data-label="Customer">
+              <div class="customer-info">
+                <strong>Ana Martinez</strong>
+                <small>ana.martinez@example.com</small>
+              </div>
             </td>
-            <td data-label="Review Platform">
-              <span class="platform-badge">
+            <td data-label="Agent">
+              <div class="agent-info">
+                <i class="fas fa-user-check" style="color: var(--lh-blue);"></i>
+                <span>Amber Reyes</span>
+              </div>
+            </td>
+            <td data-label="Platform">
+              <span class="platform-badge yelp-badge">
                 <i class="fab fa-yelp"></i> Yelp
               </span>
             </td>
-            <td data-label="Review Summary">"The agent was rude and unhelpful."</td>
-            <td data-label="Recommended Approach">
+            <td data-label="Review Summary">
+              <div class="review-summary">
+                <div class="rating">
+                  <i class="fas fa-star" style="color: var(--lh-orange);"></i>
+                  <i class="far fa-star" style="color: var(--lh-orange);"></i>
+                  <i class="far fa-star" style="color: var(--lh-orange);"></i>
+                  <i class="far fa-star" style="color: var(--lh-orange);"></i>
+                  <i class="far fa-star" style="color: var(--lh-orange);"></i>
+                </div>
+                "The agent was rude and unhelpful."
+              </div>
+            </td>
+            <td data-label="Response Plan">
               <textarea class="approach-text">Apologize sincerely, reaffirm company values, and offer to personally assist with her concern.</textarea>
             </td>
             <td data-label="Status">
-              <select class="status-select">
-                <option>Pending</option>
-                <option>In Progress</option>
-                <option selected>Resolved</option>
-              </select>
+              <span class="status-badge status-resolved">Resolved</span>
             </td>
             <td data-label="Actions">
               <div class="action-buttons">
                 <button class="action-btn" title="View Details"><i class="fas fa-eye"></i></button>
                 <button class="action-btn" title="Edit"><i class="fas fa-edit"></i></button>
-                <button class="action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                <button class="action-btn delete" title="Delete"><i class="fas fa-trash"></i></button>
               </div>
             </td>
           </tr>
@@ -144,19 +187,21 @@
     </section>
   </main>
 
-  <!-- Popup Modal -->
+  <!-- Assign Agent Popup -->
   <div id="assignPopup" class="popup-overlay">
     <div class="popup">
-      <h3><i class="fas fa-user-tag"></i> Assign Agent</h3>
+      <h3><i class="fas fa-user-tag"></i> Assign to Agent</h3>
       <select id="agentDropdown">
-        <option>Select an agent...</option>
+        <option value="">Select an agent...</option>
         <option>Mike Rodriguez</option>
         <option>Amber Reyes</option>
         <option>Joseph Santos</option>
+        <option>Sarah Johnson</option>
+        <option>David Kim</option>
       </select>
       <div class="popup-actions">
         <button class="btn" onclick="confirmAssign()">
-          <i class="fas fa-check"></i> Confirm
+          <i class="fas fa-check"></i> Assign
         </button>
         <button class="btn" onclick="closeAssignPopup()">
           <i class="fas fa-times"></i> Cancel
