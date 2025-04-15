@@ -1,13 +1,13 @@
 :root {
-    --lh-blue: #0056b3;       /* Liberty Home Guard primary blue */
-    --lh-blue-dark: #003d7a;  /* Darker blue for hover states */
-    --lh-orange: #ff6b00;     /* Liberty Home Guard accent orange */
-    --lh-orange-light: #ff8c33; /* Lighter orange */
-    --lh-gray: #f5f5f5;       /* Light gray background */
-    --lh-gray-dark: #e0e0e0;  /* Borders and dividers */
-    --lh-text: #333333;       /* Primary text color */
-    --lh-text-light: #666666; /* Secondary text */
-    --lh-white: #ffffff;      /* White background */
+    --lh-blue: #0056b3;
+    --lh-blue-dark: #003d7a;
+    --lh-orange: #ff6b00;
+    --lh-orange-light: #ff8c33;
+    --lh-gray: #f5f5f5;
+    --lh-gray-dark: #e0e0e0;
+    --lh-text: #333333;
+    --lh-text-light: #666666;
+    --lh-white: #ffffff;
     
     --border-radius: 6px;
     --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
@@ -366,6 +366,81 @@
     background-color: #d0d0d0;
   }
   
+  /* Policy Info Form Styles */
+  .policy-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-group label {
+    font-weight: 500;
+    color: var(--lh-blue);
+    font-size: 0.95rem;
+  }
+  
+  .form-group input,
+  .form-group select {
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--lh-gray-dark);
+    font-size: 0.95rem;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--lh-blue);
+    box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+  }
+  
+  .date-selector {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .date-selector select {
+    flex: 1;
+  }
+  
+  .amount-input {
+    position: relative;
+  }
+  
+  .amount-input::before {
+    content: '$';
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--lh-text);
+  }
+  
+  .amount-input input {
+    padding-left: 1.5rem;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  /* Response Plan Preview */
+  .response-preview {
+    background-color: var(--lh-gray);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--lh-orange);
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
   /* Responsive Design */
   @media (max-width: 768px) {
     .table thead {
@@ -391,7 +466,6 @@
     .table td::before {
       content: attr(data-label);
       font-weight: 600;
-      margin-right: 1rem;
       color: var(--lh-blue);
       flex: 0 0 120px;
     }
