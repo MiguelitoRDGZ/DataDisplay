@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Case - Agenda 3.0</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>Agenda 3.0</h2>
+    <ul>
+      <li><a href="index.html" class="active">Add Case</a></li>
+      <li><a href="approaches.html">Approaches Pending</a></li>
+      <li><a href="logged.html">Logged Cases</a></li>
+      <li><a href="assigned.html">Cases Assigned</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+    <div class="page-header">
+      <h1>Add Case</h1>
+    </div>
+
+    <div class="form-container">
+      <form id="caseForm">
+        <label for="caseDate">Date</label>
+        <input type="date" id="caseDate" name="date" required>
+
+        <label for="customerName">Customer Name</label>
+        <input type="text" id="customerName" name="customer" required>
+
+        <label for="reviewPlatform">Review Platform(s)</label>
+        <select id="reviewPlatform" name="platforms" multiple required>
+          <option value="Google">Google</option>
+          <option value="BBB">BBB</option>
+          <option value="Trustpilot">Trustpilot</option>
+          <option value="Email">Email</option>
+          <option value="Social Media">Social Media</option>
+        </select>
+
+        <label for="reviewLink">Review Link</label>
+        <input type="url" id="reviewLink" name="link" required>
+
+        <button type="submit">Add Case</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
