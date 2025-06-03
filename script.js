@@ -116,3 +116,101 @@ if (loggedList) {
     loggedList.appendChild(div);
   });
 }
+// ---------- APPROACH FORM (approach_form.html) ----------
+const approachForm = document.getElementById("approachForm");
+const premiumType = document.getElementById("premiumType");
+const customPremium = document.getElementById("customPremium");
+const totalPaidSpan = document.getElementById("totalPaid");
+const inHouseSpan = document.getElementById("inHouseAmount");
+const claimsSection = document.getElementById("claimsSection");
+const addClaim = document.getElementById("addClaim");
+
+if (approachForm) {
+  const approachId = parseInt(localStorage.getItem("currentApproach"));
+  const task = tasks.find(t => t.id === approachId);
+
+  if (!task) {
+    alert("Task not found.");
+    window.location.href = "approaches.html";
+  }
+
+  premiumType.addEventListener("change", () => {
+    customPremium.classList.toggle("hidden", premiumType.value !== "custom");
+    updateTotals();
+  });
+
+  addClaim.addEventListener("click", () => {
+    const row = document.createElement("div");
+    row.className = "claim-row";
+    row.innerHTML = `
+      <input type="text" placeholder="Claim Description" class="claim-desc" />
+      <input type="number" placeholder="$ Amount" class="claim-amount" />
+    `;
+    claimsSection.appendChild(row);
+  });
+
+  approachForm.addEventListener("input", updateTotals);
+
+  function updateTotals() {
+    const agreement = parseFloat(approachForm.agreementPrice.value) || 0;
+    const pcfs = parseFloat(approachForm.pcfsPaid.value) || 0;
+    const premium = premiumType.value === "custom"
+      ? parseFloat(customPremium.value) || 0
+      : agreement;
+
+    const totalPaid = premium + pcfs;
+    totalPaidSpan.textContent = totalPaid.toFixed(2);
+
+    const claimAmounts = [...document.querySelectorAll(".claim-amount")];
+    const totalClaims = claimAmounts.reduce((sum, input) => sum + (parseFloat(input.value) || 0), 0);
+    const inHouse = totalPaid - totalClaims;
+    inHouseSpan.textContent = inHouse.toFixed(2);
+  }
+
+  approachForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const formData = new FormData(approachForm);
+
+    const agreement = parseFloat(formData.get("agreementPrice")) || 0;
+    const pcfs = parseFloat(formData.get("pcfsPaid")) || 0;
+    const premium = formData.get("premiumType") === "custom"
+      ? parseFloat(formData.get("customPremium")) || 0
+      : agreement;
+
+    const claimDescs = [...document.querySelectorAll(".claim-desc")].map(el => el.value);
+    const claimAmts = [...document.querySelectorAll(".claim-amount")].map(el => parseFloat(el.value) || 0);
+    const claims = claimDescs.map((desc, i) => ({
+      desc,
+      amount: claimAmts[i]
+    }));
+
+    const totalPaid = premium + pcfs;
+    const totalClaims = claimAmts.reduce((a, b) => a + b, 0);
+    const inHouse = totalPaid - totalClaims;
+
+    // Save approach data
+    task.approach = {
+      policyType: formData.get("policyType"),
+      agreementPrice: agreement,
+      startDate: formData.get("startDate"),
+      premiumType: formData.get("premiumType"),
+      customPremium: premiumType.value === "custom" ? premium : "same",
+      pcfsPaid: pcfs,
+      totalPaid,
+      claims,
+      inHouse,
+      approachText: formData.get("approachText")
+    };
+
+    task.assignedTo = formData.get("assignTo");
+    task.status = "Pending";
+
+    // Move to assignedCases
+    assignedCases.push(task);
+    tasks = tasks.filter(t => t.id !== task.id);
+    saveTasks();
+
+    alert("Approach saved and assigned!");
+    window.location.href = "assigned.html";
+  });
+}
