@@ -13,11 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const div = document.createElement("div");
       div.className = "task-card";
       div.innerHTML = `
-        <strong>${task.date}</strong> – ${task.customer} 
-        <br>Assigned to: ${task.assignTo}
-        <br>Review Platform: ${task.reviewPlatform}
-        <br><a href="${task.reviewLink}" target="_blank">${task.reviewLink}</a>
-        <br>Approach Confirmed: ${task.approachConfirmed}
+        <div class="task-header">
+          <span class="task-date">${task.date}</span>
+          <span class="task-customer">${task.customer}</span>
+        </div>
+        <div class="task-details">
+          <p><strong>Assigned to:</strong> ${task.assignTo}</p>
+          <p><strong>Review Platform:</strong> ${task.reviewPlatform}</p>
+          ${task.reviewLink ? `<p><strong>Review Link:</strong> <a href="${task.reviewLink}" target="_blank">Open Link</a></p>` : ''}
+          <p><strong>Approach Confirmed:</strong> ${task.approachConfirmed}</p>
+        </div>
       `;
       taskList.appendChild(div);
     });
