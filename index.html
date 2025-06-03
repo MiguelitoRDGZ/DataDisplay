@@ -2,127 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Agenda Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Task | Agenda</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h2>Agenda</h2>
-    <ul>
-      <li class="active">Dashboard</li>
-      <li>Upcoming</li>
-      <li>Completed</li>
-    </ul>
+  <div class="container">
+    <h1>Add New Case</h1>
+    <form id="taskForm">
+      <input type="date" name="date" required />
+      <input type="text" name="customer" placeholder="Customer Name" required />
+
+      <select name="reviewPlatform" required>
+        <option value="">Select Review Platform</option>
+        <option value="BBB">BBB</option>
+        <option value="Google">Google</option>
+        <option value="Trustpilot">Trustpilot</option>
+        <option value="Facebook">Facebook</option>
+        <option value="Yelp">Yelp</option>
+      </select>
+
+      <input type="url" name="reviewLink" placeholder="Review Link" required />
+
+      <button type="submit">Submit Case</button>
+    </form>
   </div>
-
-  <!-- Main Content -->
-  <main class="content">
-    <div class="header">
-      <h1>Scheduled Tasks</h1>
-      <div>
-        <button id="addTaskBtn">+ Add Task</button>
-        <button id="openApproachBtn">+ Add Approach</button>
-      </div>
-    </div>
-
-    <div id="taskList" class="task-list">
-      <!-- Tasks will appear here -->
-    </div>
-  </main>
-
-  <!-- Task Modal -->
-  <div id="modal" class="modal hidden">
-    <div class="modal-content">
-      <h2>New Task</h2>
-      <form id="taskForm">
-        <input type="date" name="date" required />
-        <input type="text" name="customer" placeholder="Customer" required />
-        
-        <select name="assignTo" required>
-          <option value="">Assign To</option>
-          <option value="Tiffany Moore">Tiffany Moore</option>
-          <option value="Anthony Smith">Anthony Smith</option>
-          <option value="Alex Collado">Alex Collado</option>
-          <option value="Luz Fernandez">Luz Fernandez</option>
-          <option value="Nigel Liloy">Nigel Liloy</option>
-          <option value="Josh Kim">Josh Kim</option>
-          <option value="Nino Green">Nino Green</option>
-          <option value="Eddy Sanchez">Eddy Sanchez</option>
-          <option value="Mike Rodriguez">Mike Rodriguez</option>
-        </select>
-
-        <input type="text" name="reviewPlatform" placeholder="Review Platform" />
-        <input type="url" name="reviewLink" placeholder="Review Link" />
-        <select name="approachConfirmed">
-          <option value="">Approach Confirmed?</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-
-        <button type="submit">Save Task</button>
-      </form>
-      <button id="closeModal">Close</button>
-    </div>
-  </div>
-
-  <!-- Approaches Modal -->
-  <div id="approachModal" class="modal hidden">
-    <div class="modal-content">
-      <h2>New Approach</h2>
-      <form id="approachForm">
-        <label>Policy Type</label>
-        <select name="policyType" required>
-          <option value="Monthly">Monthly</option>
-          <option value="Yearly 1">Yearly - 1 Year</option>
-          <option value="Yearly 3">Yearly - 3 Years</option>
-          <option value="Yearly 5">Yearly - 5 Years</option>
-          <option value="Yearly 10">Yearly - 10 Years</option>
-        </select>
-
-        <label>Agreement Price ($)</label>
-        <input type="number" name="agreementPrice" required />
-
-        <label>Start Date</label>
-        <input type="date" name="startDate" required />
-
-        <label>Premiums Paid</label>
-        <select name="premiumType" id="premiumType">
-          <option value="same">Same as Agreement</option>
-          <option value="custom">Different Amount</option>
-        </select>
-
-        <input type="number" name="customPremium" id="customPremium" class="hidden" placeholder="Enter custom amount" />
-
-        <label>PCFs Paid ($)</label>
-        <input type="number" name="pcfsPaid" required />
-
-        <label><strong>Total Paid</strong>: $<span id="totalPaid">0.00</span></label>
-
-        <!-- Claims -->
-        <div id="claimsSection">
-          <label>Claim Expenses:</label>
-          <div class="claim-row">
-            <input type="text" placeholder="Claim Description" class="claim-desc" />
-            <input type="number" placeholder="$ Amount" class="claim-amount" />
-          </div>
-        </div>
-        <button type="button" id="addClaim">+ Add Claim</button>
-
-        <!-- In House Result -->
-        <label><strong>We have in house</strong>: $<span id="inHouseAmount">0.00</span></label>
-
-        <!-- Final Approach -->
-        <label>Our Approach</label>
-        <textarea name="approachText" rows="5" required></textarea>
-
-        <button type="submit">Save Approach</button>
-      </form>
-      <button id="closeApproachModal">Close</button>
-    </div>
-  </div>
-
   <script src="script.js"></script>
 </body>
 </html>
