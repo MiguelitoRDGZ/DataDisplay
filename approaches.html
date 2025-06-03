@@ -24,72 +24,71 @@
       <h1>Approaches Pending</h1>
     </div>
 
-    <div class="card-grid" id="approachCards"></div>
-
-    <!-- Approach Form Popup -->
-    <div id="approachModal" class="modal hidden">
-      <div class="modal-content">
-        <h2>Create Approach</h2>
-        <form id="approachForm">
-          <label for="policyType">Policy Type</label>
-          <select id="policyType" required>
-            <option value="">Select</option>
-            <option value="Monthly">Monthly</option>
-            <option value="Yearly">Yearly</option>
-          </select>
-
-          <div id="policyLengthContainer" class="hidden">
-            <label for="policyLength">Policy Length (Years)</label>
-            <select id="policyLength">
-              <option value="1">1</option>
-              <option value="3">3</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-            </select>
-          </div>
-
-          <label for="agreementPrice">Agreement Price ($)</label>
-          <input type="number" id="agreementPrice" required>
-
-          <label for="startDate">Policy Start Date</label>
-          <input type="date" id="startDate" required>
-
-          <label>Premiums Paid</label>
-          <select id="premiumOption" required>
-            <option value="">Select</option>
-            <option value="same">Same</option>
-            <option value="custom">Custom</option>
-          </select>
-
-          <input type="number" id="customPremium" class="hidden" placeholder="Enter Custom Amount">
-
-          <label for="pcfsPaid">PCFs Paid ($)</label>
-          <input type="number" id="pcfsPaid" required>
-
-          <div id="claimList">
-            <label>Claim Expenses</label>
-            <div class="claim-row">
-              <input type="text" placeholder="Description" class="claim-desc">
-              <input type="number" placeholder="Amount" class="claim-amount">
-            </div>
-          </div>
-          <button type="button" id="addClaimBtn">+ Add Claim</button>
-
-          <label>Total Paid</label>
-          <input type="text" id="totalPaid" readonly>
-
-          <label>We Have In House</label>
-          <input type="text" id="weHaveInHouse" readonly>
-
-          <label for="ourApproach">Our Approach</label>
-          <textarea id="ourApproach" rows="4" required></textarea>
-
-          <button type="submit">Save Approach</button>
-          <button type="button" id="closeApproachModal">Cancel</button>
-        </form>
-      </div>
-    </div>
+    <div id="approachCards" class="card-grid"></div>
   </main>
+
+  <!-- Approach Modal -->
+  <div id="approachModal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeApproachModal">&times;</button>
+      <h2>Create Approach</h2>
+      <form id="approachForm">
+        <label for="policyType">Policy Type</label>
+        <select id="policyType" required>
+          <option value="">Select</option>
+          <option value="Monthly">Monthly</option>
+          <option value="Yearly">Yearly</option>
+        </select>
+
+        <div id="policyLengthContainer" class="hidden">
+          <label for="policyLength">Policy Length</label>
+          <select id="policyLength">
+            <option value="1">1</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+
+        <label for="agreementPrice">Agreement Price ($)</label>
+        <input type="number" id="agreementPrice" required>
+
+        <label for="startDate">Policy Start Date</label>
+        <input type="date" id="startDate" required>
+
+        <label>Premiums Paid</label>
+        <select id="premiumOption" required>
+          <option value="">Select</option>
+          <option value="same">Same</option>
+          <option value="custom">Custom</option>
+        </select>
+        <input type="number" id="customPremium" class="hidden" placeholder="Enter Custom Amount">
+
+        <label for="pcfsPaid">PCFs Paid ($)</label>
+        <input type="number" id="pcfsPaid" required>
+
+        <label>Claim Expenses</label>
+        <div id="claimList">
+          <div class="claim-row">
+            <input type="text" placeholder="Description" class="claim-desc" />
+            <input type="number" placeholder="Amount" class="claim-amount" />
+          </div>
+        </div>
+        <button type="button" id="addClaimBtn">+ Add Claim</button>
+
+        <label>Total Paid</label>
+        <input type="text" id="totalPaid" readonly>
+
+        <label>We Have In House</label>
+        <input type="text" id="weHaveInHouse" readonly>
+
+        <label for="ourApproach">Our Approach</label>
+        <textarea id="ourApproach" rows="4" required></textarea>
+
+        <button type="submit">Save Approach</button>
+      </form>
+    </div>
+  </div>
 
   <script src="assets/script.js"></script>
 </body>

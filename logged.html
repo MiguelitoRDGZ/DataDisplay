@@ -24,6 +24,43 @@
     <div id="loggedCasesContainer" class="card-grid"></div>
   </main>
 
-  <script src="assets/script.js"></script>
+  <script>
+    const LOGGED_CASES_KEY = 'agenda_logged_cases';
+
+    const statusColors = {
+      "Pending": "status-pending",
+      "Success": "status-completed",
+      "Unable to Reach": "status-unreachable",
+      "Re-Evaluate Later": "status-reevaluate",
+      "Removed": "status-removed",
+      "Loss": "status-lost",
+      "Unable to Find": "status-not-found"
+    };
+
+    function renderLoggedCases() {
+      const container = document.getElementById('loggedCasesContainer');
+      const cases = JSON.parse(localStorage.getItem(LOGGED_CASES_KEY)) || [];
+      container.innerHTML = '';
+
+      cases.forEach(c => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-header">
+            <h3 class="card-title">${c.customer}</h3>
+            <span class="card-date">${c.date}</span>
+          </div>
+          <div class="card-content">
+            <p><strong>Platforms:</strong> ${c.platforms.join(', ')}</p>
+            <p><a href="${c.reviewLink}" target="_blank">Review Link</a></p>
+            <p><span class="status-badge ${statusColors[c.status] || 'status-pending'}">${c.status}</span></p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', renderLoggedCases);
+  </script>
 </body>
 </html>
