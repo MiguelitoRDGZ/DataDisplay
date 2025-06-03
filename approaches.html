@@ -5,91 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Approaches Pending</title>
   <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-  <!-- Sidebar -->
   <aside class="sidebar">
-    <h2>Agenda 3.0</h2>
+    <div class="sidebar-header">Agenda</div>
     <ul>
-      <li><a href="index.html">Add Case</a></li>
-      <li><a href="approaches.html" class="active">Approaches Pending</a></li>
-      <li><a href="logged.html">Logged Cases</a></li>
-      <li><a href="assigned.html">Cases Assigned</a></li>
+      <li><a href="index.html"><i data-lucide="plus-circle"></i> Add Case</a></li>
+      <li><a href="approaches.html" class="active"><i data-lucide="file-clock"></i> Approaches Pending</a></li>
+      <li><a href="logged.html"><i data-lucide="clipboard-list"></i> Logged Cases</a></li>
+      <li><a href="assigned.html"><i data-lucide="user-check"></i> Cases Assigned</a></li>
     </ul>
   </aside>
 
-  <!-- Content -->
   <main class="content">
     <div class="page-header">
-      <h1>Approaches Pending</h1>
+      <h1><i data-lucide="file-clock"></i> Approaches Pending</h1>
     </div>
-
-    <div id="approachCards" class="card-grid"></div>
+    <div id="approachCards" class="card-grid fade-in"></div>
   </main>
 
   <!-- Approach Modal -->
   <div id="approachModal" class="modal hidden">
-    <div class="modal-content">
-      <button id="closeApproachModal">&times;</button>
-      <h2>Create Approach</h2>
+    <div class="modal-content slide-up">
+      <h2><i data-lucide="file-edit"></i> Create Approach</h2>
       <form id="approachForm">
-        <label for="policyType">Policy Type</label>
-        <select id="policyType" required>
-          <option value="">Select</option>
+        <label>Policy Type</label>
+        <select id="policyType">
           <option value="Monthly">Monthly</option>
           <option value="Yearly">Yearly</option>
         </select>
 
-        <div id="policyLengthContainer" class="hidden">
-          <label for="policyLength">Policy Length</label>
+        <div id="policyLengthContainer" style="display:none">
+          <label>Policy Length</label>
           <select id="policyLength">
-            <option value="1">1</option>
-            <option value="3">3</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
+            <option value="1">1 year</option>
+            <option value="3">3 years</option>
+            <option value="5">5 years</option>
+            <option value="10">10 years</option>
           </select>
         </div>
 
-        <label for="agreementPrice">Agreement Price ($)</label>
+        <label>Agreement Price</label>
         <input type="number" id="agreementPrice" required>
 
-        <label for="startDate">Policy Start Date</label>
+        <label>Start Date</label>
         <input type="date" id="startDate" required>
 
         <label>Premiums Paid</label>
-        <select id="premiumOption" required>
-          <option value="">Select</option>
+        <select id="premiumOption">
           <option value="same">Same</option>
           <option value="custom">Custom</option>
         </select>
-        <input type="number" id="customPremium" class="hidden" placeholder="Enter Custom Amount">
+        <input type="number" id="customPremium" style="display:none" placeholder="Enter custom amount">
 
-        <label for="pcfsPaid">PCFs Paid ($)</label>
+        <label>PCFs Paid</label>
         <input type="number" id="pcfsPaid" required>
 
-        <label>Claim Expenses</label>
-        <div id="claimList">
+        <div id="claimListContainer">
+          <label>Claim Expenses</label>
           <div class="claim-row">
-            <input type="text" placeholder="Description" class="claim-desc" />
-            <input type="number" placeholder="Amount" class="claim-amount" />
+            <input type="text" class="claim-desc" placeholder="Description" />
+            <input type="number" class="claim-amount" placeholder="Amount" />
           </div>
         </div>
-        <button type="button" id="addClaimBtn">+ Add Claim</button>
+        <button type="button" onclick="addClaim()">+ Add Claim</button>
 
         <label>Total Paid</label>
         <input type="text" id="totalPaid" readonly>
 
-        <label>We Have In House</label>
+        <label>We Have in House</label>
         <input type="text" id="weHaveInHouse" readonly>
 
-        <label for="ourApproach">Our Approach</label>
-        <textarea id="ourApproach" rows="4" required></textarea>
+        <label>Our Approach</label>
+        <textarea id="ourApproach" rows="4" placeholder="Describe approach..."></textarea>
 
-        <button type="submit">Save Approach</button>
+        <button type="submit"><i data-lucide="save"></i> Save Approach</button>
+        <button type="button" id="closeModal"><i data-lucide="x"></i> Cancel</button>
       </form>
     </div>
   </div>
 
   <script src="assets/script.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>
