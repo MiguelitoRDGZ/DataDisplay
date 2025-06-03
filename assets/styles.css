@@ -1,1 +1,97 @@
-body { font-family: sans-serif; margin: 0; display: flex; }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  display: flex;
+  background-color: #f4f7fa;
+}
+
+.sidebar {
+  width: 220px;
+  background: #003840;
+  color: white;
+  height: 100vh;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 20px;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin-top: 0;
+  color: #003840;
+}
+
+form input,
+form select,
+form button {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+form button {
+  background-color: #2EA8A1;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #00525D;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.card button {
+  margin-top: 10px;
+  background-color: #E84850;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background-color: #c43e45;
+}
+
+select {
+  background-color: white;
+}
