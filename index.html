@@ -2,24 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Case Submission</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agenda Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="container">
-    <h1>Submit a New Case</h1>
-    <form id="caseForm">
-      <input name="Date" placeholder="Date" required />
-      <input name="AssignedDate" placeholder="Assigned Date" />
-      <input name="Customer" placeholder="Customer" required />
-      <input name="ReviewPlatform" placeholder="Review Platform" />
-      <input name="ReviewLink" placeholder="Review Link" />
-      <input name="ApproachConfirmed" placeholder="Approach Confirmed" />
-      <input name="AssignTo" placeholder="Assign To" />
-      <button type="submit">Submit Case</button>
-    </form>
+  <div class="sidebar">
+    <h2>Agenda</h2>
+    <ul>
+      <li class="active">Dashboard</li>
+      <li>Upcoming</li>
+      <li>Completed</li>
+    </ul>
+  </div>
+
+  <main class="content">
+    <div class="header">
+      <h1>Scheduled Tasks</h1>
+      <button id="addTaskBtn">+ Add Task</button>
+    </div>
+
+    <div id="taskList" class="task-list">
+      <!-- Tasks will be listed here -->
+    </div>
   </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>New Task</h2>
+      <form id="taskForm">
+        <input type="date" name="date" required />
+        <input type="text" name="customer" placeholder="Customer" required />
+        <input type="text" name="assignTo" placeholder="Assign To" required />
+        <input type="text" name="reviewPlatform" placeholder="Review Platform" />
+        <input type="url" name="reviewLink" placeholder="Review Link" />
+        <select name="approachConfirmed">
+          <option value="">Approach Confirmed?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+        <button type="submit">Save Task</button>
+      </form>
+      <button id="closeModal">Close</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

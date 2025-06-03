@@ -1,39 +1,87 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
   margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  height: 100vh;
+  background-color: #f4f6f8;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+}
+
+.sidebar ul {
+  list-style: none;
   padding: 0;
 }
 
-.container {
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.sidebar li {
+  margin: 15px 0;
+  cursor: pointer;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
+.sidebar li.active {
+  font-weight: bold;
+  color: #1abc9c;
 }
 
-form input, form button {
-  display: block;
-  width: 100%;
-  margin-bottom: 15px;
-  padding: 10px;
+.content {
+  flex-grow: 1;
+  padding: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#addTaskBtn {
+  padding: 10px 15px;
   font-size: 16px;
-}
-
-button {
-  background-color: #0066cc;
+  background: #1abc9c;
   color: white;
   border: none;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #004c99;
+.task-list {
+  margin-top: 20px;
+}
+
+.task-card {
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  min-width: 300px;
 }
