@@ -12,14 +12,24 @@ document.getElementById("caseForm").addEventListener("submit", async function (e
     AssignTo: form.AssignTo.value
   };
 
-  await fetch("https://script.google.com/macros/s/AKfycbzJoQYlodh43Op_KdmbRBEXUHmhZVZEyQezUHNR_OmSuNYguVfWIblm9tHFt-6tuUNm/exec", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  });
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbzJoQYlodh43Op_KdmbRBEXUHmhZVZEyQezUHNR_OmSuNYguVfWIblm9tHFt-6tuUNm/exec", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
 
-  alert("Case submitted!");
-  form.reset();
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    alert("Case submitted successfully!");
+    form.reset();
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("There was a problem submitting your case. Please try again.");
+  }
 });
