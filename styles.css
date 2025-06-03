@@ -332,3 +332,21 @@ body {
 .bg-pale-aqua {
   background-color: var(--pale-aqua);
 }
+.task-status-dropdown {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.task-status-dropdown.status-pending { color: var(--coral-red); background-color: rgba(232, 72, 80, 0.1); }
+.task-status-dropdown.status-success { color: var(--turquoise); background-color: rgba(46, 168, 161, 0.1); }
+.task-status-dropdown.status-unreachable { color: var(--slate-blue); background-color: rgba(76, 110, 119, 0.1); }
+.task-status-dropdown.status-reeval { color: #c47e00; background-color: rgba(255, 198, 66, 0.15); }
+.task-status-dropdown.status-removed { color: #007d76; background-color: rgba(127, 255, 212, 0.1); }
+.task-status-dropdown.status-loss { color: #4b4b4b; background-color: rgba(80, 80, 80, 0.1); }

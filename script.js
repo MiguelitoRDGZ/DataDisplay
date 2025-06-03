@@ -7,15 +7,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const tasks = [];
 
+  function statusClass(status) {
+    switch (status) {
+      case "Pending": return "status-pending";
+      case "Success": return "status-success";
+      case "Unable to Reach": return "status-unreachable";
+      case "Re-Evaluate later": return "status-reeval";
+      case "Removed": return "status-removed";
+      case "Loss": return "status-loss";
+      default: return "";
+    }
+  }
+
   function renderTasks() {
     taskList.innerHTML = '';
-    tasks.forEach(task => {
+    tasks.forEach((task, index) => {
       const div = document.createElement("div");
       div.className = "task-card";
       div.innerHTML = `
         <div class="task-header">
-          <span class="task-date">${task.date}</span>
-          <span class="task-customer">${task.customer}</span>
+          <div>
+            <span class="task-date">${task.date}</span>
+            <span class="task-customer">${task.customer}</span>
+          </div>
+          <select class="task-status-dropdown ${statusClass(task.status)}">
+            ${["Pending", "Success", "Unable to Reach", "Re-Evaluate later", "Removed", "Loss"].map(option => `
+              <option value="${option}" ${task.status === option ? "selected" : ""}>${option}</option>
+            `).join("")}
+          </select>
         </div>
         <div class="task-details">
           <p><strong>Assigned to:</strong> ${task.assignTo}</p>
@@ -25,6 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
       taskList.appendChild(div);
+
+      const statusDropdown = div.querySelector(".task-status-dropdown");
+      statusDropdown.addEventListener("change", (e) => {
+        task.status = e.target.value;
+        renderTasks(); // Re-render with updated styling
+      });
     });
   }
 
@@ -34,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", e => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(form).entries());
+    data.status = "Pending"; // Automatically set status
     tasks.push(data);
     renderTasks();
     form.reset();
