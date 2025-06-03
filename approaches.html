@@ -10,15 +10,68 @@
   <aside class="sidebar">
     <ul>
       <li><a href="index.html">Add Task</a></li>
-      <li><a href="approaches.html">Approaches Pending</a></li>
+      <li><a href="approaches.html" class="active">Approaches Pending</a></li>
       <li><a href="logged.html">Logged Cases</a></li>
       <li><a href="assigned.html">Cases Assigned</a></li>
     </ul>
   </aside>
+
   <main class="content">
     <h1>Approaches Pending</h1>
-    <div id="approachCards"></div>
+    <div id="approachCards" class="card-grid"></div>
   </main>
+
+  <!-- Modal -->
+  <div id="approachModal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeModal">&times;</button>
+      <h2>Create Approach</h2>
+      <form id="approachForm">
+        <label>Policy Type</label>
+        <select name="policyType" required>
+          <option value="Monthly">Monthly</option>
+          <option value="Yearly">Yearly</option>
+        </select>
+
+        <label>Policy Length (Years)</label>
+        <select name="policyLength">
+          <option value="1">1</option>
+          <option value="3">3</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+        </select>
+
+        <label>Agreement Price ($)</label>
+        <input type="number" name="agreementPrice" required />
+
+        <label>Policy Start Date</label>
+        <input type="date" name="startDate" required />
+
+        <label>Premiums Paid</label>
+        <select name="premiumsPaid" id="premiumToggle">
+          <option value="same">SAME</option>
+          <option value="custom">Custom</option>
+        </select>
+
+        <div id="customPremiumsInput" style="display: none;">
+          <input type="number" name="customPremiums" placeholder="Enter Custom Premiums" />
+        </div>
+
+        <label>PCFs Paid ($)</label>
+        <input type="number" name="pcfsPaid" required />
+
+        <label>Claim Expenses</label>
+        <div id="claimsList"></div>
+        <button type="button" id="addClaim">+ Add Claim</button>
+
+        <label>Our Approach</label>
+        <textarea name="approachText" rows="4" required></textarea>
+
+        <button type="submit">Save Approach</button>
+      </form>
+    </div>
+  </div>
+
   <script src="assets/script.js"></script>
 </body>
 </html>
