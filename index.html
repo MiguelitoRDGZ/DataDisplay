@@ -17,38 +17,41 @@
       <li><a href="assigned.html"><i data-lucide="clipboard-check"></i>Cases Assigned</a></li>
     </ul>
   </aside>
+
   <main class="content">
     <div class="page-header">
       <i data-lucide="plus-circle"></i>
       <h1>Add Case</h1>
     </div>
-    <div class="form-container">
-      <form id="taskForm">
+
+    <div class="form-container card fade-in">
+      <form id="caseForm">
         <label for="date">Date</label>
-        <input type="date" id="date" required />
+        <input type="date" id="date" required>
 
         <label for="customer">Customer Name</label>
-        <input type="text" id="customer" required />
+        <input type="text" id="customer" placeholder="Enter full name..." required>
 
-        <label for="platform">Review Platform</label>
-        <select id="platform" multiple required>
-          <option value="BBB">BBB</option>
-          <option value="Trustpilot">Trustpilot</option>
+        <label for="platform">Review Platform(s)</label>
+        <select id="platform" multiple size="5" required>
           <option value="Google">Google</option>
+          <option value="Trustpilot">Trustpilot</option>
+          <option value="BBB">BBB</option>
           <option value="Facebook">Facebook</option>
-          <option value="Other">Other</option>
+          <option value="Email">Email</option>
         </select>
 
         <label for="link">Review Link</label>
-        <input type="url" id="link" required />
+        <input type="url" id="link" placeholder="https://..." required>
 
-        <button type="submit"><i data-lucide="send"></i>Submit</button>
+        <button type="submit" class="primary">
+          <i data-lucide="send"></i> Submit Case
+        </button>
       </form>
     </div>
   </main>
+
   <script src="assets/script.js"></script>
-  <script>
-    lucide.createIcons();
-  </script>
+  <script>lucide.createIcons();</script>
 </body>
 </html>
