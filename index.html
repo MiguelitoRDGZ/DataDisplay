@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Agenda</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Case Agenda</h1>
+            <p>Manage your cases and approaches</p>
+        </header>
+
+        <div class="main-content">
+            <section class="case-section">
+                <h2>Add New Case</h2>
+                <form id="caseForm">
+                    <div class="form-group">
+                        <label for="caseTitle">Case Title:</label>
+                        <input type="text" id="caseTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="caseDescription">Description:</label>
+                        <textarea id="caseDescription" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="casePriority">Priority:</label>
+                        <select id="casePriority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Add Case</button>
+                </form>
+            </section>
+
+            <section class="cases-list">
+                <h2>Your Cases</h2>
+                <div id="casesContainer" class="cases-container">
+                    <!-- Cases will be added here dynamically -->
+                </div>
+            </section>
+        </div>
+
+        <div id="approachModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add Approach</h2>
+                <form id="approachForm">
+                    <input type="hidden" id="currentCaseId">
+                    <div class="form-group">
+                        <label for="approachMethod">Method:</label>
+                        <input type="text" id="approachMethod" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="approachDetails">Details:</label>
+                        <textarea id="approachDetails" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="approachDate">Date:</label>
+                        <input type="date" id="approachDate" required>
+                    </div>
+                    <button type="submit" class="btn">Add Approach</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
