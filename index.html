@@ -1,74 +1,724 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Agenda</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Monthly Complaint & Review Report — June 2025</title>
+<style>
+  :root {
+    --primary-color: #004080;
+    --secondary-color: #0070c0;
+    --accent-color: #00509e;
+    --light-bg: #f4f7fb;
+    --card-bg: #fff;
+    --text-dark: #2e3a59;
+    --text-medium: #35435c;
+    --text-light: #405472;
+    --border-color: #dde3ec;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+    --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
+    --shadow-lg: 0 15px 50px rgba(0,0,0,0.12);
+    --gradient-blue: linear-gradient(135deg, #004080 0%, #0070c0 100%);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--light-bg);
+    color: var(--text-dark);
+    line-height: 1.7;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  header {
+    background: var(--gradient-blue);
+    color: #fff;
+    padding: 2rem 2rem 1.5rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+  }
+
+  header h1 {
+  font-weight: 900;
+  font-size: 2.6rem;
+  margin: 0.5rem 0 0.8rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: #ffffff;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 0 8px rgba(255, 255, 255, 0.2);
+}
+header p {
+  font-size: 1rem;
+  margin: 0.5rem 0 0.8rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: #ffffff;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+  header p strong {
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  header p strong::after {
+    content: "|";
+    margin-left: 1rem;
+    opacity: 0.5;
+  }
+
+  header p strong:last-child::after {
+    display: none;
+  }
+
+  main {
+    max-width: 1024px;
+    margin: 3rem auto 5rem;
+    background: var(--card-bg);
+    padding: 3rem 4rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+  }
+
+  main::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 5%;
+    right: 5%;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.05), transparent);
+    border-radius: 0 0 12px 12px;
+    filter: blur(5px);
+    z-index: -1;
+  }
+
+  h1, h2, h3 {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  h2 {
+    border-bottom: 3px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+    margin-top: 2.5rem;
+    font-size: 1.8rem;
+    position: relative;
+  }
+
+  h2::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--secondary-color), rgba(0,112,192,0.3));
+  }
+
+  h3 {
+    margin-top: 2.2rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    font-size: 1.4rem;
+  }
+
+  p {
+    margin: 1.2rem 0;
+    color: var(--text-medium);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2rem 0 3rem;
+    font-size: 1rem;
+    box-shadow: var(--shadow-sm);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  thead tr {
+    background: var(--secondary-color);
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  thead th {
+    padding: 1rem 1.2rem;
+    border: none;
+    position: relative;
+  }
+
+  thead th:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: rgba(255,255,255,0.3);
+  }
+
+  tbody tr {
+    background: #f9fbff;
+    transition: var(--transition);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  tbody tr:nth-child(even) {
+    background: #f2f7ff;
+  }
+
+  tbody tr:hover {
+    background-color: #e6f0ff;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0,112,192,0.1);
+  }
+
+  tbody td {
+    padding: 1rem 1.2rem;
+    text-align: center;
+    color: var(--text-medium);
+    font-weight: 500;
+    border: none;
+  }
+
+  tbody td:first-child {
+    font-weight: 600;
+    text-align: left;
+    color: var(--primary-color);
+  }
+
+  ul {
+    margin: 1.5rem 0 2rem;
+    padding-left: 1.2rem;
+    color: var(--text-light);
+    list-style-type: none;
+  }
+
+  ul li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.8rem;
+    line-height: 1.6;
+  }
+
+  ul li::before {
+    content: "•";
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    position: absolute;
+    left: 0;
+    top: -0.3rem;
+  }
+
+  ul li strong {
+    color: var(--primary-color);
+  }
+
+  canvas {
+    max-width: 100%;
+    margin: 1.5rem 0 1.2rem;
+    box-shadow: 0 4px 20px rgba(0,112,192,0.15);
+    border-radius: 10px;
+    background: white;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+  }
+
+  canvas:hover {
+    box-shadow: 0 8px 30px rgba(0,112,192,0.25);
+  }
+
+  .chart-container {
+    margin-bottom: 3.5rem;
+    position: relative;
+  }
+
+  .chart-container::after {
+    content: "";
+    position: absolute;
+    bottom: -1.5rem;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-color), transparent);
+  }
+
+  .chart-container:last-child::after {
+    display: none;
+  }
+
+  button.export-btn {
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.8rem;
+    margin: 0.8rem 0 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 5px 15px rgba(0,112,192,0.3);
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  button.export-btn:hover {
+    background-color: #005a9c;
+    box-shadow: 0 8px 25px rgba(0,90,156,0.4);
+    transform: translateY(-2px);
+  }
+
+  button.export-btn:active {
+    transform: translateY(0);
+  }
+
+  button.export-btn::before {
+    content: "↓";
+    font-size: 1.1em;
+  }
+
+  #downloadPDF {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin: 3rem auto 1rem;
+    font-size: 1.1rem;
+    background: var(--primary-color);
+  }
+
+  #downloadPDF:hover {
+    background: #003366;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+    color: #9ca7b8;
+    border-top: 1px solid var(--border-color);
+    background: #f9fbff;
+    margin-top: 3rem;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  section {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  section:nth-child(1) { animation-delay: 0.1s; }
+  section:nth-child(2) { animation-delay: 0.2s; }
+  section:nth-child(3) { animation-delay: 0.3s; }
+  section:nth-child(4) { animation-delay: 0.4s; }
+  section:nth-child(5) { animation-delay: 0.5s; }
+  section:nth-child(6) { animation-delay: 0.6s; }
+
+  /* Responsive Design */
+  @media (max-width: 900px) {
+    main {
+      padding: 2.5rem 3rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    main {
+      padding: 2rem;
+      margin: 1.5rem auto 3rem;
+      border-radius: 8px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+    }
+
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    button.export-btn {
+      width: 100%;
+      padding: 1rem;
+      justify-content: center;
+    }
+
+    ul li {
+      padding-left: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    main {
+      padding: 1.8rem 1.5rem;
+    }
+
+    header h1 {
+      font-size: 1.7rem;
+    }
+
+    header p {
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    header p strong::after {
+      display: none;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+    }
+
+    thead th, tbody td {
+      padding: 0.8rem 0.6rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    body {
+      background: white;
+      font-size: 14px;
+    }
+
+    header {
+      padding: 1rem;
+      box-shadow: none;
+      break-after: avoid;
+    }
+
+    main {
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
+      max-width: 100%;
+    }
+
+    button.export-btn {
+      display: none;
+    }
+
+    canvas {
+      box-shadow: none;
+      border: 1px solid #ddd;
+      max-width: 90%;
+      margin: 1rem auto;
+    }
+
+    footer {
+      display: none;
+    }
+
+    @page {
+      margin: 1cm;
+    }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Case Agenda</h1>
-            <p>Manage your cases and approaches</p>
-        </header>
 
-        <div class="main-content">
-            <section class="case-section">
-                <h2>Add New Case</h2>
-                <form id="caseForm">
-                    <div class="form-group">
-                        <label for="caseTitle">Case Title:</label>
-                        <input type="text" id="caseTitle" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="caseDescription">Description:</label>
-                        <textarea id="caseDescription" rows="3" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="casePriority">Priority:</label>
-                        <select id="casePriority">
-                            <option value="low">Low</option>
-                            <option value="medium" selected>Medium</option>
-                            <option value="high">High</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn">Add Case</button>
-                </form>
-            </section>
+<header>
+  <h1>Monthly Complaint & Review Report — June 2025</h1>
+  <p><strong>Date:</strong> July 2, 2025</p>
+</header>
 
-            <section class="cases-list">
-                <h2>Your Cases</h2>
-                <div id="casesContainer" class="cases-container">
-                    <!-- Cases will be added here dynamically -->
-                </div>
-            </section>
-        </div>
+<main id="report-content">
+  <section class="executive-summary">
+    <h2>Executive Summary</h2>
+    <p>This report analyzes complaint categories across three sources for June 2025:</p>
+    <ul>
+      <li><strong>BBB Complaints</strong></li>
+      <li><strong>All Reviews</strong> (public feedback)</li>
+      <li><strong>Internal Reports</strong></li>
+    </ul>
+    <p>The goal is to identify frequent issues impacting customer satisfaction and operational performance to guide targeted improvements.</p>
+  </section>
 
-        <div id="approachModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Add Approach</h2>
-                <form id="approachForm">
-                    <input type="hidden" id="currentCaseId">
-                    <div class="form-group">
-                        <label for="approachMethod">Method:</label>
-                        <input type="text" id="approachMethod" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="approachDetails">Details:</label>
-                        <textarea id="approachDetails" rows="4" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="approachDate">Date:</label>
-                        <input type="date" id="approachDate" required>
-                    </div>
-                    <button type="submit" class="btn">Add Approach</button>
-                </form>
-            </div>
-        </div>
+  <section class="data-summary">
+    <h2>Data Summary</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>BBB Complaints</th>
+          <th>All Reviews</th>
+          <th>Internal Reports</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Low Contribution</td><td>1</td><td>23</td><td>10</td></tr>
+        <tr><td>Technician Delays</td><td>2</td><td>17</td><td>20</td></tr>
+        <tr><td>Misled During Sales Call</td><td>2</td><td>16</td><td>5</td></tr>
+        <tr><td>Labor Not Covered</td><td>2</td><td>17</td><td>3</td></tr>
+        <tr><td>Claim Delays</td><td>6</td><td>46</td><td>20</td></tr>
+        <tr><td>Coverage Denied</td><td>3</td><td>3</td><td>0</td></tr>
+        <tr><td>Parts/Unit Error</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>Poor Communication</td><td>8</td><td>37</td><td>4</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="key-insights">
+    <h2>Key Insights</h2>
+    <ul>
+      <li><strong>Claim Delays</strong> is the most frequent complaint across all data sources, indicating a key area for improvement.</li>
+      <li><strong>Poor Communication</strong> is prominent in external reviews and BBB complaints, signaling need for better customer communication.</li>
+      <li><strong>Technician Delays</strong> show operational challenges impacting customer satisfaction.</li>
+      <li><strong>Coverage Denied</strong> and <strong>Parts/Unit Error</strong> have minimal mentions and are less critical currently.</li>
+      <li><strong>Misled During Sales Call</strong> and <strong>Labor Not Covered</strong> have moderate mentions and warrant monitoring.</li>
+    </ul>
+  </section>
+
+  <section class="charts">
+    <h2>Visual Analysis</h2>
+
+    <div class="chart-container">
+      <h3>Complaint Counts by Category Across Data Sources</h3>
+      <canvas id="barChart" aria-label="Complaint Counts by Category" role="img"></canvas>
+      <button class="export-btn" id="downloadBarChart">Download Bar Chart as PNG</button>
     </div>
 
-    <script src="script.js"></script>
+    <div class="chart-container">
+      <h3>Percentage Distribution of Complaint Categories in All Reviews</h3>
+      <canvas id="pieChart" aria-label="Complaint Category Distribution" role="img"></canvas>
+      <button class="export-btn" id="downloadPieChart">Download Pie Chart as PNG</button>
+    </div>
+  </section>
+
+  <section class="recommendations">
+    <h2>Recommendations</h2>
+    <ul>
+      <li><strong>Address Claim Processing Delays:</strong> Streamline the claims workflow to reduce delays and improve customer satisfaction.</li>
+      <li><strong>Improve Communication:</strong> Enhance customer-facing staff training and communication channels for clearer, timely updates.</li>
+      <li><strong>Reduce Technician Delays:</strong> Optimize scheduling and dispatch procedures for quicker technician response times.</li>
+      <li><strong>Sales Transparency:</strong> Improve clarity during sales to reduce misunderstandings about coverage.</li>
+      <li><strong>Monitor Coverage Denied Cases:</strong> Proactively track to prevent escalation despite current low volume.</li>
+    </ul>
+  </section>
+
+  <section class="next-steps">
+    <h2>Next Steps</h2>
+    <ul>
+      <li>Develop an action plan targeting claims efficiency and communication improvements.</li>
+      <li>Perform root cause analysis on technician delays.</li>
+      <li>Continue monthly monitoring of complaint trends.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Brand Management.
+</footer>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- html2pdf CDN -->
+<script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+
+<script>
+  // Data
+  const categories = [
+    "Low Contribution",
+    "Technician Delays",
+    "Misled During Sales Call",
+    "Labor Not Covered",
+    "Claim Delays",
+    "Coverage Denied",
+    "Parts/Unit Error",
+    "Poor Communication"
+  ];
+
+  const bbbComplaints = [1, 2, 2, 2, 6, 3, 0, 8];
+  const allReviews = [23, 17, 16, 17, 46, 3, 0, 37];
+  const internalReports = [10, 20, 5, 3, 20, 0, 0, 4];
+
+  // Bar Chart
+  const ctxBar = document.getElementById('barChart').getContext('2d');
+  const barChart = new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+      labels: categories,
+      datasets: [
+        {
+          label: 'BBB Complaints',
+          data: bbbComplaints,
+          backgroundColor: 'rgba(0,83,156,0.7)'
+        },
+        {
+          label: 'All Reviews',
+          data: allReviews,
+          backgroundColor: 'rgba(0,156,118,0.7)'
+        },
+        {
+          label: 'Internal Reports',
+          data: internalReports,
+          backgroundColor: 'rgba(255, 159, 64, 0.7)'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: {
+        mode: 'index',
+        intersect: false,
+      },
+      stacked: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Number of Complaints'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Complaint Category'
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        tooltip: {
+          enabled: true,
+        }
+      }
+    }
+  });
+
+  // Pie Chart
+  const ctxPie = document.getElementById('pieChart').getContext('2d');
+  const pieChart = new Chart(ctxPie, {
+    type: 'pie',
+    data: {
+      labels: categories,
+      datasets: [{
+        data: allReviews,
+        backgroundColor: [
+          '#003f5c',
+          '#2f4b7c',
+          '#665191',
+          '#a05195',
+          '#d45087',
+          '#f95d6a',
+          '#ff7c43',
+          '#ffa600'
+        ],
+        borderColor: '#fff',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'right',
+          labels: {
+            boxWidth: 15,
+            padding: 10
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const total = context.dataset.data.reduce((a,b) => a + b, 0);
+              const value = context.parsed;
+              const percentage = ((value / total) * 100).toFixed(1);
+              return `${context.label}: ${value} (${percentage}%)`;
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Export Bar Chart as PNG
+  document.getElementById('downloadBarChart').addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.download = 'complaint_counts_bar_chart.png';
+    link.href = barChart.toBase64Image();
+    link.click();
+  });
+
+  // Export Pie Chart as PNG
+  document.getElementById('downloadPieChart').addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.download = 'complaint_distribution_pie_chart.png';
+    link.href = pieChart.toBase64Image();
+    link.click();
+  });
+
+  // Export Full Report as PDF
+  document.getElementById('downloadPDF').addEventListener('click', () => {
+    const element = document.getElementById('report-content');
+    const opt = {
+      margin:       0.5,
+      filename:     'Monthly_Complaint_Review_Report_June_2025.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    // Use html2pdf to generate PDF
+    html2pdf().set(opt).from(element).save();
+  });
+</script>
+
 </body>
 </html>
